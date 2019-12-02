@@ -1,25 +1,29 @@
-ul.tabs {
+@import 'variables.scss';
+
+.TabView {
   display: flex;
-}
-
-.tabs li {
-  display: inline-block;
-  width: 50%;
-  padding: 15px;
-  text-align: center;
-  box-sizing: border-box;
-  border-bottom: 1px solid #ccc;
-  background-color: #eee;
-  color: #999;
-  &:hover {
-    cursor: pointer;
+  margin: 0;
+  padding: 0;
+  li {
+    display: inline-block;
+    width: 50%;
+    padding: 15px;
+    text-align: center;
+    box-sizing: border-box;
+    border-bottom: 1px solid $grey-color-light;
+    background-color: $grey-color;
+    color: $grey-color-dark;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+  
+  li.active {
+    background-color: $brand-color;
+    color: $white-color;
+    &:hover {
+      cursor: auto;
+    }
   }
 }
 
-.tabs li.active {
-  background-color: #2ac1bc;
-  color: #fff;
-  &:hover {
-    cursor: auto;
-  }
-}

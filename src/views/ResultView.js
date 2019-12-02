@@ -1,29 +1,33 @@
 import View from './View.js'
+import defaultImage from '../images/default-image.jpg'
+import './ResultView.scss';
 
 export default class ResultView extends View {
   constructor(el) {
     super(el)
     
-    this._messages = {
+    this.messages = {
       NO_RESULT: '검색 결과가 없습니다'
     }
   }
   
   mount(data = []) {
-    this.el.innerHTML = data.length ? this._getSearchResultsHtml(data) : this.messages.NO_RESULT
-    this.show()
+    this.el.innerHTML = `<div class="ResultView">
+      ${data.length ? this.getSearchResultsHtml(data) : this.messages.NO_RESULT}
+    </div>`
+    this.show();
   }
 
-  _getSearchResultsHtml(data) {
+  getSearchResultsHtml(data) {
     return data.reduce((html, item) => {
-      html += this._getSearchItemHtml(item)
+      html += this.getSearchItemHtml(item)
       return html
     }, '<ul>') + '</ul>'
   }
   
-  _getSearchItemHtml(item) {
+  getSearchItemHtml(item) {
     return `<li>
-      <img src="${item.image}" />
+      <img src="${item.image}" onerror="this.src='${defaultImage}'"/>
       <p>${item.name}</p>
     </li>`
   }

@@ -1,4 +1,5 @@
 import View from './View.js'
+import './KeywordView.scss';
 
 export default class KeywordView extends View {
   
@@ -13,17 +14,17 @@ export default class KeywordView extends View {
   }
   
   mount(data = []) {
-    this.el.innerHTML = data.length ? this._getKeywordsHtml(data) : this._messages.NO_KEYWORDS
+    this.el.innerHTML = data.length ? this.getKeywordsHtml(data) : this._messages.NO_KEYWORDS
     this.show()
     this._bindClickEvent()
     return this
   }
   
-  _getKeywordsHtml(data) {
+  getKeywordsHtml(data) {
     return data.reduce((html, item, index) => {
       html += `<li data-keyword="${item.keyword}"><span class="number">${index + 1}</span>${item.keyword}</li>`
       return html
-    }, '<ul class="list">') + "</ul>"
+    }, '<ul class="KeywordView">') + "</ul>"
   }
   
   _bindClickEvent () {

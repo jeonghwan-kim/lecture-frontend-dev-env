@@ -1,12 +1,17 @@
 const data = [{
     id: 1,
-    name: '[키친르쎌] 홈메이드 칠리소스 포크립 650g',
-    image: 'https://cdn.bmf.kr/_data/product/H1821/5a4ed4e8a6751cb1cc089535c000f331.jpg'
+    name: '[버거] 치즈버거처럼 생긴 새우버거',
+    image: 'https://images.unsplash.com/photo-1547584370-2cc98b8b8dc8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60'
   },
   {
     id: 2,
-    name: '[키친르쎌] 이탈리아 파티 세트 3~4인분',
-    image: 'https://cdn.bmf.kr/_data/product/H503E/300d931e3b8252ed628b6a3c2f56936b.jpg'
+    name: '[샐러드] 맛있는 색깔의 콥셀러드',
+    image: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60'
+  },
+  {
+    id: 3,
+    name: '[피자] 썸네일 주소가 잘못된 상품',
+    image: 'http://foo.bar/image.jpg'
   }
 ]
 

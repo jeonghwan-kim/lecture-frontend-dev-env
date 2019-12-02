@@ -11,7 +11,7 @@ export default class TabView extends View {
   }
 
   mount() {
-    this.el.innerHTML = `<ul class="tabs">
+    this.el.innerHTML = `<ul class="TabView">
       <li>추천 검색어</li>
       <li>최근 검색어</li>
     </ul>`

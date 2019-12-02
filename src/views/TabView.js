@@ -1,38 +1,41 @@
 import View from './View.js'
 
-const tag = '[TabView]'
+import './TabView.scss';
 
-const TabView = Object.create(View)
+export default class TabView extends View {
+  constructor(el) {
+    super(el)
+    
+    this.mount()    
+    this.bindEvents()
+  }
 
-TabView.tabNames = {
-  recommand: '추천 검색어',
-  recent: '최근 검색어',
+  mount() {
+    this.el.innerHTML = `<ul class="tabs">
+      <li>추천 검색어</li>
+      <li>최근 검색어</li>
+    </ul>`
+  }
+
+  get tabItems() {
+    return Array.from(this.el.children[0].children)
+  }
+
+  bindEvents() {
+    this.tabItems.forEach(li => {
+      li.addEventListener('click', () => this.onClick(li.innerHTML))
+    })
+  }
+  
+  onClick(tabName) {
+    this.setActiveTab(tabName)
+    this.emit('@change', { tabName })
+  }
+  
+  setActiveTab(tabName) {
+    this.tabItems.forEach(li => {
+      li.className = li.innerHTML === tabName ? 'active' : ''
+    })
+    this.show()
+  }
 }
-
-TabView.setup = function (el) {
-  this.init(el)
-  this.bindClick()
-  return this
-}
-
-TabView.setActiveTab = function (tabName) {
-  Array.from(this.el.children).forEach(li => {
-    li.className = li.innerHTML === tabName ? 'active' : ''
-  })
-  this.show()
-}
-
-TabView.bindClick = function () {
-  Array.from(this.el.children).forEach(li => {
-    li.addEventListener('click', e => this.onClick(li.innerHTML))
-  })
-}
-
-TabView.onClick = function (tabName) {
-  this.setActiveTab(tabName)
-  this.emit('@change', {
-    tabName
-  })
-}
-
-export default TabView

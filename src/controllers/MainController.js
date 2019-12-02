@@ -8,85 +8,69 @@ import SearchModel from '../models/SearchModel.js'
 import KeywordModel from '../models/KeywordModel.js'
 import HistoryModel from '../models/HistoryModel.js'
 
-const tag = '[MainController]'
 
-export default {
-  init() {
-    FormView.setup(document.querySelector('form'))
-      .on('@submit', e => this.onSubmit(e.detail.input))
-      .on('@reset', e => this.onResetForm())
+export default class MainController {
+  constructor() {
+    const formViewEl = document.querySelector('form')
+    const tabViewEl = document.querySelector('#tabs')
+    const keywordViewEl = document.querySelector('#search-keyword')
+    const historyViewEl = document.querySelector('#search-history')
+    const resultViewEl = document.querySelector('#search-result')
 
-    TabView.setup(document.querySelector('#tabs'))
+    this.formView = new FormView(formViewEl)
+      .on('@submit', e => this.search(e.detail.input))
+      .on('@reset', () => this.renderView())
+
+    this.tabView = new TabView(tabViewEl)
       .on('@change', e => this.onChangeTab(e.detail.tabName))
 
-    KeywordView.setup(document.querySelector('#search-keyword'))
-      .on('@click', e => this.onClickKeyword(e.detail.keyword))
+    this.keywordView = new KeywordView(keywordViewEl)
+      .on('@click', e => this.search(e.detail.keyword))
 
-    HistoryView.setup(document.querySelector('#search-history'))
-      .on('@click', e => this.onClickHistory(e.detail.keyword))
+    this.historyView = new HistoryView(historyViewEl)
+      .on('@click', e => this.search(e.detail.keyword))
       .on('@remove', e => this.onRemoveHistory(e.detail.keyword))
 
-    ResultView.setup(document.querySelector('#search-result'))
+    this.resultView = new ResultView(resultViewEl)
 
     this.selectedTab = '추천 검색어'
     this.renderView()
-  },
-  search(query) {
-    FormView.setValue(query)
-    SearchModel.list(query).then(data => {
-      this.onSearchResult(data)
-    })
-  },
-  renderView() {
-    console.log(tag, 'rednerView()')
-    TabView.setActiveTab(this.selectedTab)
+  }
 
-    if (this.selectedTab === '추천 검색어') {
-      this.fetchSearchKeyword()
-      HistoryView.hide()
-    } else {
-      this.fetchSearchHistory()
-      KeywordView.hide()
-    }
+  async search(query) {
+    this.formView.setValue(query)
+    const data =  await SearchModel.list(query)
+    this.onSearchResult(data)
+  }
 
-    ResultView.hide()
-  },
-  fetchSearchKeyword() {
-    KeywordModel.list().then(data => {
-      KeywordView.render(data)
-    })
-  },
-  fetchSearchHistory() {
-    HistoryModel.list().then(data => {
-      const a = HistoryView.render(data)
-      a.bindRemoveBtn()
-    })
-  },
-
-  onSubmit(input) {
-    console.log(tag, 'onSubmit()', input)
-    this.search(input)
-  },
-  onResetForm() {
-    console.log(tag, 'onResetForm()')
-    this.renderView()
-  },
   onSearchResult(data) {
-    TabView.hide()
-    KeywordView.hide()
-    HistoryView.hide()
-    ResultView.render(data)
-  },
+    this.tabView.hide()
+    this.keywordView.hide()
+    this.historyView.hide()
+    this.resultView.mount(data)
+  }
+
   onChangeTab(tabName) {
     this.selectedTab = tabName
     this.renderView()
-  },
-  onClickKeyword(keyword) {
-    this.search(keyword)
-  },
-  onClickHistory(keyword) {
-    this.search(keyword)
-  },
+  }
+
+  async renderView() {
+    this.tabView.setActiveTab(this.selectedTab)
+
+    if (this.selectedTab === '추천 검색어') {
+      const data = await KeywordModel.list()
+      this.keywordView.mount(data)
+      this.historyView.hide()
+    } else {
+      const data = await HistoryModel.list()
+      this.historyView.mount(data).bindRemoveBtn()
+      this.keywordView.hide()
+    }
+
+    this.resultView.hide()
+  }
+
   onRemoveHistory(keyword) {
     HistoryModel.remove(keyword)
     this.renderView()

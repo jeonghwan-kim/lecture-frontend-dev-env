@@ -37,26 +37,6 @@ input[type=text] {
   border: 1px solid #ccc;
 }
 
-ul.tabs {
-  display: flex;
-}
-
-.tabs li {
-  display: inline-block;
-  width: 50%;
-  padding: 15px;
-  text-align: center;
-  box-sizing: border-box;
-  border-bottom: 1px solid #ccc;
-  background-color: #eee;
-  color: #999;
-}
-
-.tabs li.active {
-  background-color: #2ac1bc;
-  color: #fff;
-}
-
 .list li {
   box-sizing: border-box;
   display: block;

@@ -1,23 +1,8 @@
-export default {
-  data: [{
-      keyword: '이탈리아'
-    },
-    {
-      keyword: '세프의요리'
-    },
-    {
-      keyword: '제철'
-    },
-    {
-      keyword: '홈파티'
-    }
-  ],
+import axios from 'axios'
 
-  list() {
-    return new Promise(res => {
-      setTimeout(() => {
-        res(this.data)
-      }, 200)
-    })
+export default {
+  async list() {
+    const result = await axios.get('/api/keywords');
+    return result.data;
   }
 }

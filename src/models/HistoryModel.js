@@ -1,20 +1,14 @@
-export default {
-  data: [{
-      keyword: '검색기록2',
-      date: '12.03'
-    },
-    {
-      keyword: '검색기록1',
-      date: '12.02'
-    },
-    {
-      keyword: '검색기록0',
-      date: '12.01'
-    },
-  ],
+import axios from 'axios'
 
-  list() {
-    return Promise.resolve(this.data)
+export default {
+  data: [],
+
+  async list() {
+    if (this.data.length) return this.data;
+
+    const result = await axios.get('/api/history')
+    this.data = result.data;
+    return this.data;
   },
 
   add(keyword = '') {

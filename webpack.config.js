@@ -3,9 +3,11 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const apiMocker = require('connect-api-mocker');
+const webpack = require('webpack');
+const mode = process.env.NODE_ENV || 'development';
 
 module.exports = {
-  mode: 'development',
+  mode,
   entry: {
     main: './src/app.js'
   },
@@ -28,19 +30,22 @@ module.exports = {
       })
       app.use(apiMocker('/api', 'mocks/api'))
     },
-    host: 'dev.domain.com',
+    // host: 'dev.domain.com',
     stats: 'errors-only',
     overlay: true,
     port: 8081,
     historyApiFallback: true,
+    proxy: {
+      '/api': 'localhost:8082'
+    },
+    hot: true,
   },
-  watch: false,
   module: {
     rules: [
       {
         test: /\.scss$/, 
         use: [
-          MiniCssExtractPlugin.loader, 
+          mode === 'production' ? MiniCssExtractPlugin.loader : 'style-loader',
           'css-loader', 
           'sass-loader',
         ]
@@ -58,12 +63,17 @@ module.exports = {
   },
   plugins: [
     new CleanWebpackPlugin(),
-    new MiniCssExtractPlugin({
-      filename: '[name].css',
-    }),
+    
     new HtmlWebpackPlugin({
       template: './src/index.html',
       hash: true,
     }),
+    ...(mode === 'production'  
+      ? [
+          new MiniCssExtractPlugin({ filename: '[name].css' }),
+          new webpack.HotModuleReplacementPlugin(),
+        ]
+      : []
+    )
   ]
 };

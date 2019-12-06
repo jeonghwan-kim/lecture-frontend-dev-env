@@ -1,4 +1,4 @@
-import axios from 'axios'
+import request from './request'
 
 export default {
   data: [],
@@ -6,8 +6,7 @@ export default {
   async list() {
     if (this.data.length) return this.data;
 
-    const result = await axios.get('/api/history')
-    this.data = result.data;
+    this.data = await request('get', '/api/history')
     return this.data;
   },
 

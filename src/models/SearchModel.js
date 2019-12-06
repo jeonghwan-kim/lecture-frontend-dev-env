@@ -1,8 +1,7 @@
-import axios from 'axios'
+import request from './request'
 
 export default {
   async list() {
-    const result = await axios.get('/api/search');
-    return result.data;
+    return await request('get', '/api/search');
   }
 }

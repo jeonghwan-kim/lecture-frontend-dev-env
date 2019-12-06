@@ -1,5 +1,9 @@
 const express = require('express')
+const morgan = require('morgan');
+
 const app = express();
+app.use(morgan('dev'));
+
 const port = process.env.PORT || 8082;
 const keywords = [
   { keyword: '이탈리아' },
@@ -27,6 +31,7 @@ let history = [
 ]
 
 app.get('/api/keywords', (req, res) => {
+  // res.header("Access-Control-Allow-Origin", "*");
   res.json(keywords)
 })
 

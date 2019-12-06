@@ -1,8 +1,8 @@
-import axios from 'axios'
+import request from './request'
 
 export default {
   async list() {
-    const result = await axios.get('/api/keywords');
-    return result.data;
+    const data = await request('get', '/api/keywords');
+    return []||data;
   }
 }

@@ -1,10 +1,11 @@
-const path = require('path')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const { CleanWebpackPlugin } = require('clean-webpack-plugin')
-const apiMocker = require('connect-api-mocker');
+const path = require('path');
 const webpack = require('webpack');
-const mode = process.env.NODE_ENV || 'development';
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const apiMocker = require('connect-api-mocker')
+
+const mode  = process.env.NODE_ENV || "development";
 
 module.exports = {
   mode,
@@ -16,64 +17,58 @@ module.exports = {
     path: path.resolve('./dist'),
   },
   devServer: {
-    contentBase: './dist',
-    publicPath: '/',
-    open: true, 
-    before: (app, server, compiler) => {
-      app.get('/api/keywords', (req, res) => {
-        res.json([
-          { keyword: '이탈리아' },
-          { keyword: '세프의요리' }, 
-          { keyword: '제철' }, 
-          { keyword: '홈파티'}
-        ])
-      })
-      app.use(apiMocker('/api', 'mocks/api'))
-    },
-    // host: 'dev.domain.com',
-    stats: 'errors-only',
     overlay: true,
-    port: 8081,
-    historyApiFallback: true,
-    proxy: {
-      '/api': 'localhost:8082'
+    stats: 'errors-only',
+    before: (app, server, compiler) => {
+      app.use(apiMocker('/api', 'mocks/api'));
     },
-    hot: true,
   },
   module: {
-    rules: [
-      {
-        test: /\.scss$/, 
-        use: [
-          mode === 'production' ? MiniCssExtractPlugin.loader : 'style-loader',
-          'css-loader', 
-          'sass-loader',
-        ]
-      },
-      {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        loader: 'babel-loader',
-      },
-      {
-        test: /\.(jpg|jpeg|svg|png)$/,
-        loader: 'file-loader',
+    rules: [{
+      test: /\.(scss|css)$/,
+      use: [
+        mode === 'production' 
+        ? MiniCssExtractPlugin.loader  // 프로덕션 환경
+        : 'style-loader',  // 개발 환경
+        'css-loader', 
+        'sass-loader'
+      ], 
+    },{
+      test: /\.(png|jpg|svg)$/,
+      loader: 'url-loader',
+      options: {
+        name: '[name].[ext]?[hash]', 
+        limit: 5000 
       }
-    ]
+    }, {
+      test: /\.js$/,
+      exclude: /node_modules/,
+      loader: 'babel-loader', // 바벨 로더를 추가한다 
+    }]
   },
   plugins: [
-    new CleanWebpackPlugin(),
-    
-    new HtmlWebpackPlugin({
-      template: './src/index.html',
-      hash: true,
+    new webpack.BannerPlugin({
+      banner: `빌드 날짜: ${new Date().toLocaleString()}`,
     }),
-    ...(mode === 'production'  
-      ? [
-          new MiniCssExtractPlugin({ filename: '[name].css' }),
-          new webpack.HotModuleReplacementPlugin(),
-        ]
+    new webpack.DefinePlugin({
+    }),
+    new HtmlWebpackPlugin({
+      template: './src/index.html', 
+      templateParameters: { 
+        env: mode === 'development' ? '(개발용)' : '', 
+      },
+      minify: mode === 'production' ? { 
+        collapseWhitespace: true, // 빈칸 제거 
+        removeComments: true, // 주석 제거 
+      } : false,
+      hash: mode === 'production'
+    }),
+    new CleanWebpackPlugin(),
+    ...(
+      mode === 'production' 
+      ? [ new MiniCssExtractPlugin({filename: `[name].css`}) ]
       : []
-    )
+    ),
   ]
-};
+}
+

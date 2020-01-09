@@ -1,19 +1,14 @@
-const presets = [
-  [
-    "@babel/env",
-    {
-      targets: {
-        edge: "17",
-        firefox: "60",
-        chrome: "67",
-        safari: "11.1",
-        ie: "11",
-      },
-      useBuiltIns: "usage",
-    },
-  ],
-];
-
 module.exports = {
-  presets
-}; 
+  presets: [
+    ['@babel/preset-env', {
+      targets: {
+        chrome: '79',
+        ie: '11', // npm i regenerator-runtime 필요함
+      },
+      useBuiltIns: 'usage', // 폴리필 사용 방식 지정
+      corejs: { // 폴리필 버전 지정
+        version: 2
+      }
+    }],
+  ],
+};

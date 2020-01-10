@@ -1,10 +1,4 @@
-$brand-color: #2ac1bc;
-$brand-color-light: lighten($brand-color, 30);
-$grey-color: #eee;
-$grey-color-light: lighten($grey-color, 30);
-$grey-color-dark: darken($grey-color, 30);
-$white-color: #fff;
-$span: 4px;
+@import './variables.scss';
 
 @mixin btn-close {
   $width: 20px;

@@ -18,7 +18,7 @@ $span: 4px;
     display: inline-block;
     height: $width;
     width: $width;
-    background: url('/src/images/times-circle.png') no-repeat center / contain;
+    background: url('../images/times-circle.png') no-repeat center / contain;
     opacity: .15;
   }
   &:hover {

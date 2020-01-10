@@ -6,7 +6,7 @@ const app = express();
 
 app.use(morgan("dev"));
 
-// app.use(express.static(path.join(__dirname, "../dist")));
+app.use(express.static(path.join(__dirname, "../dist")));
 
 const port = process.env.PORT || 8081;
 const keywords = [
@@ -74,9 +74,9 @@ app.get("/api/search", (req, res) => {
   res.json(search);
 });
 
-// app.get("*", (req, res) => {
-//   res.sendFile(path.join(__dirname, "../dist/index.html"));
-// });
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../dist/index.html"));
+});
 
 app.listen(port, () => {
   console.log(`서버가 구동되었습니다. localhost:${port}`);

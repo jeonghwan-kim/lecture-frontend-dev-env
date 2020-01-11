@@ -1,13 +1,12 @@
-import request from "./request";
-
 export default {
-  data: [],
+  data: [
+    { keyword: "검색기록2", date: "12.03" },
+    { keyword: "검색기록1", date: "12.02" },
+    { keyword: "검색기록0", date: "12.01" }
+  ],
 
-  async list() {
-    if (this.data.length) return this.data;
-
-    this.data = await request("get", "/api/history");
-    return this.data;
+  list() {
+    return Promise.resolve(this.data);
   },
 
   add(keyword = "") {

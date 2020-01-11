@@ -1,6 +1,5 @@
 const path = require("path");
 const webpack = require("webpack");
-
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
@@ -19,15 +18,13 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.css$/,
+        test: /\.(scss|css)$/,
         use: [
-          /**
-           * TODO: SASS 코드를 사용할수 있겠끔 sass-loader를 구성하세요.
-           */
           process.env.NODE_ENV === "production"
-            ? MiniCssExtractPlugin.loader // 프로덕션 환경
-            : "style-loader", // 개발 환경
-          "css-loader"
+            ? MiniCssExtractPlugin.loader
+            : "style-loader",
+          "css-loader",
+          "sass-loader"
         ]
       },
       {
@@ -35,13 +32,13 @@ module.exports = {
         loader: "url-loader",
         options: {
           name: "[name].[ext]?[hash]",
-          limit: 10000 // 10Kb
+          limit: 10000
         }
       },
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        loader: "babel-loader" 
+        loader: "babel-loader"
       }
     ]
   },

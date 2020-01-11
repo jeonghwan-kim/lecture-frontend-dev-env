@@ -4,10 +4,8 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
-const mode = process.env.NODE_ENV || "development";
-
 module.exports = {
-  mode,
+  mode: "development",
   entry: {
     main: "./src/app.js"
   },
@@ -17,15 +15,18 @@ module.exports = {
   },
   devServer: {
     overlay: true,
-    stats: "errors-only"
-    // TODO: 여기에 api 서버 프록싱 설정을 추가하세요
+    stats: "errors-only",
+    proxy: {
+      "/api": "http://localhost:8081"
+    },
+    // TODO: 여기에 핫로딩을 설정하세요
   },
   module: {
     rules: [
       {
         test: /\.(scss|css)$/,
         use: [
-          mode === "production"
+          process.env.NODE_ENV === "production"
             ? MiniCssExtractPlugin.loader // 프로덕션 환경
             : "style-loader", // 개발 환경
           "css-loader",
@@ -55,19 +56,19 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: "./src/index.html",
       templateParameters: {
-        env: mode === "development" ? "(개발용)" : ""
+        env: process.env.NODE_ENV === "development" ? "(개발용)" : ""
       },
       minify:
-        mode === "production"
+        process.env.NODE_ENV === "production"
           ? {
               collapseWhitespace: true, // 빈칸 제거
               removeComments: true // 주석 제거
             }
           : false,
-      hash: mode === "production"
+      hash: process.env.NODE_ENV === "production"
     }),
     new CleanWebpackPlugin(),
-    ...(mode === "production"
+    ...(process.env.NODE_ENV === "production"
       ? [new MiniCssExtractPlugin({ filename: `[name].css` })]
       : [])
   ]

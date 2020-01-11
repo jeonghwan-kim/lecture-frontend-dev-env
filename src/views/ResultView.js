@@ -1,6 +1,4 @@
 import View from "./View.js";
-
-// TODO: 파일을 로딩할수 있도록 웹팩 로더 설정을 추가하세요 (file-loader나 image-loader)
 import defaultImage from "../images/default-image.jpg";
 
 export default class ResultView extends View {

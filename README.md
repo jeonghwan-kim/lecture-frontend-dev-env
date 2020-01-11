@@ -8,11 +8,14 @@
 
 - src: 프론트엔드 소스
 - server: API 서버 코드 
-- resource: 강의 진행에 필요한 리소스(이미지, 코드, 리액트 코드 )
+- resource: 강의 진행에 필요한 리소스(이미지, 코드)
+- react-sample: 리액트 샘플
 
-## 브랜치 목록
+## 실습 브랜치
 
-강의 진행에 따라 적절한 브랜치로 이동합니다. 
+강의 중 실습은 아래 브랜치 중 하나로 이동하여 진행합니다.
+
+실습 문제는 TODO 주석으로 기록되어 있습니다. 
 
 - 1-webpack/1-entry: 웹팩 엔트리/아웃풋 실습
 - 1-webpack/2-loader: 웹팩 로더 실습
@@ -24,5 +27,6 @@
 - 4-webpack/1-dev-server: 웹팩 개발 서버 실습
 - 4-webpack/2-hot: 웹팩 핫로딩 실습
 - 4-webpack/3-optimazation: 웹팩 최적화 실습
-- 
+- 5-sample/1-react: 리액트 샘플 실습
 - master: 최종 결과물 
+

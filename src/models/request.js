@@ -1,12 +1,12 @@
-import axios from 'axios'
+import axios from "axios";
 
 export default async function request(method, url, data, headers) {
   const result = await axios({
     method,
     url,
     data,
-    headers,
-  })
+    headers
+  });
 
-  return result.data
+  return result.data;
 }

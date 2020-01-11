@@ -1,7 +1,7 @@
-import request from './request'
+import request from "./request";
 
 export default {
   async list() {
-    return await request('get', '/api/search');
+    return await request("get", "/api/search");
   }
-}
+};

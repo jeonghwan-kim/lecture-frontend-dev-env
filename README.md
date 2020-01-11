@@ -28,5 +28,5 @@
 - `4-webpack/2-hot`: 웹팩 핫로딩 실습
 - `4-webpack/3-optimazation`: 웹팩 최적화 실습
 - `5-sample/1-react`: 리액트 샘플 실습
-- master: 최종 결과물 
+- `master`: 최종 결과물 
 

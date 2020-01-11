@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { hot } from 'react-hot-loader';
 import Name from './Name';
 
 class Hello extends React.Component {
@@ -8,4 +7,5 @@ class Hello extends React.Component {
   }
 }
 
-export default hot(module)(Hello);
+// TODO: 핫로더를 지원하는 컴퍼넌트로 변환하세요
+export default Hello

@@ -1,0 +1,29 @@
+@import '../scss/variables.scss';
+
+.TabView {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  li {
+    display: inline-block;
+    width: 50%;
+    padding: 15px;
+    text-align: center;
+    box-sizing: border-box;
+    border-bottom: 1px solid $border-color;
+    background-color: $white-color;
+    color: $secondary-color;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+  
+  li.active {
+    background-color: $brand-color;
+    color: $white-color;
+    &:hover {
+      cursor: auto;
+    }
+  }
+}
+

@@ -19,8 +19,11 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(scss|css)$/,
+        test: /\.css$/,
         use: [
+          /**
+           * TODO: SASS 코드를 사용할수 있겠끔 sass-loader를 구성하세요.
+           */
           process.env.NODE_ENV === "production"
             ? MiniCssExtractPlugin.loader // 프로덕션 환경
             : "style-loader", // 개발 환경
@@ -34,10 +37,12 @@ module.exports = {
           name: "[name].[ext]?[hash]",
           limit: 10000 // 10Kb
         }
+      },
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        loader: "babel-loader" 
       }
-      /**
-       * TODO: babel-loader를 구성해 보세요.
-       */
     ]
   },
   plugins: [

@@ -1,0 +1,13 @@
+@import '../scss/mixins.scss';
+
+.HistoryView {
+  @include list();
+  
+  .btn-remove {
+    position: absolute;
+    right: 0px;
+    top: 12px;
+    margin-right: 15px;
+    @include btn-close();
+  }
+}

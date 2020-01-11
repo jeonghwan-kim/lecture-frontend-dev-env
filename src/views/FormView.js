@@ -1,4 +1,5 @@
 import View from "./View.js";
+import "./FormView.scss";
 
 export default class FormView extends View {
   constructor(el) {

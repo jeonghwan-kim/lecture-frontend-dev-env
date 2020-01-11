@@ -1,0 +1,23 @@
+@import './scss/normalize.scss';
+@import './scss/variables.scss';
+
+#app {
+  min-width: 320px; // iphone5
+  max-width: 768px; // tablet
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.container {
+  margin-left: $span * 2;
+  margin-right: $span * 2;
+}
+
+header {
+  border-bottom: 1px  solid $border-color;
+  margin: 0;
+  text-align: center;
+}
+.content {
+  border: 1px solid $border-color;;
+}

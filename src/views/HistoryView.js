@@ -1,4 +1,5 @@
 import KeywordView from "./KeywordView.js";
+import "./HistoryView.scss";
 
 export default class HistoryView extends KeywordView {
   constructor(el) {

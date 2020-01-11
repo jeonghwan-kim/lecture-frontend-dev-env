@@ -1,0 +1,33 @@
+@import '../scss/variables.scss';
+
+.ResultView {
+  ul {
+    margin: 0;
+    padding: 0;
+    li {
+      display: flex;
+      margin-bottom: $span;
+      padding: 0 $span;
+      &:first-child {
+        padding-top: $span;
+      }
+      &:last-child {
+        padding-bottom: $span;
+      }
+      &:last-child {
+        margin-bottom: 0;
+      }
+      &:hover {
+        cursor: pointer;
+      }
+    }
+    img {
+      max-width: 150px;
+      margin-right: 8px;
+    }
+    p {
+      display: flex;
+      align-items: center;
+    }
+  }
+}

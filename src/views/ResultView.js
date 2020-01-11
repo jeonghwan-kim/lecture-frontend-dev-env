@@ -1,6 +1,4 @@
 import View from "./View.js";
-import defaultImage from "../images/default-image.jpg";
-import "./ResultView.scss";
 
 export default class ResultView extends View {
   constructor(el) {
@@ -29,7 +27,7 @@ export default class ResultView extends View {
 
   getSearchItemHtml(item) {
     return `<li>
-      <img src="${item.image}" onerror="this.src='${defaultImage}'"/>
+      <img src="${item.image}" onerror="this.src='src/images/default-image.jpg'"/>
       <p>${item.name}</p>
     </li>`;
   }

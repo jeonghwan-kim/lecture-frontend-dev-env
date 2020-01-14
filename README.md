@@ -21,7 +21,7 @@
 
 수업에서 다루는 도구의 버전은 다음과 같습니다. 웬만하면 이 버전과 같은 환경으로 만들어 주세요.
 
-- Node.js 13과 NPM 6
+- Node.js 13과 NPM 6 ([이 이슈](https://github.com/babel/babel/pull/11006)로 인해 Node.js v13.2 이상을 설치해야 합니다.)
 - 웹팩 4
 - 바벨 7
 
@@ -55,4 +55,3 @@
 - `4-webpack/3-optimazation`: 웹팩 최적화 실습
 - `5-sample/1-react`: 리액트 샘플 실습
 - `master`: 최종 결과물 
-

@@ -1,4 +1,4 @@
-@import './variables.scss';
+@import "./variables.scss";
 
 @mixin btn-close {
   $width: 20px;
@@ -8,12 +8,12 @@
   width: $width;
   height: $width;
   &:before {
-    content: ' ';
+    content: " ";
     display: inline-block;
     height: $width;
     width: $width;
-    background: url('../images/times-circle.png') no-repeat center / contain;
-    opacity: .15;
+    background: url("../images/times-circle.png") no-repeat center / contain;
+    opacity: 0.15;
   }
   &:hover {
     cursor: pointer;

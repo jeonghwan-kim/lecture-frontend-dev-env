@@ -1,9 +1,8 @@
-@import '../scss/mixins.scss';
-
+@import "../scss/mixins.scss";
 
 .FormView {
   position: relative;
-  input[type=text] {
+  input[type="text"] {
     display: block;
     box-sizing: border-box;
     width: 100%;
@@ -13,10 +12,10 @@
     line-height: 1.5;
     border: 1px solid #cccccc;
   }
-    .btn-reset {
+  .btn-reset {
     position: absolute;
     top: 12px;
     right: 10px;
     @include btn-close();
   }
-}  
+}

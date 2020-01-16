@@ -1,4 +1,4 @@
-@import '../scss/variables.scss';
+@import "../scss/variables.scss";
 
 .TabView {
   display: flex;
@@ -17,7 +17,7 @@
       cursor: pointer;
     }
   }
-  
+
   li.active {
     background-color: $brand-color;
     color: $white-color;
@@ -26,4 +26,3 @@
     }
   }
 }
-

@@ -1,5 +1,5 @@
-@import './scss/normalize.scss';
-@import './scss/variables.scss';
+@import "./scss/normalize.scss";
+@import "./scss/variables.scss";
 
 #app {
   min-width: 320px; // iphone5
@@ -14,10 +14,11 @@
 }
 
 header {
-  border-bottom: 1px  solid $border-color;
+  border-bottom: 1px solid $border-color;
   margin: 0;
   text-align: center;
 }
+
 .content {
-  border: 1px solid $border-color;;
+  border: 1px solid $border-color;
 }

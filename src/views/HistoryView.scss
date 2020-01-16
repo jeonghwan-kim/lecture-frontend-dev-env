@@ -1,8 +1,8 @@
-@import '../scss/mixins.scss';
+@import "../scss/mixins.scss";
 
 .HistoryView {
   @include list();
-  
+
   .btn-remove {
     position: absolute;
     right: 0px;

@@ -1,6 +1,6 @@
 # 프론트엔드 개발 환경의 이해 
 
-"프론트엔드 개발 환경의 이해" 강의 자료입니다.
+"[프론트엔드 개발 환경의 이해와 실습](https://www.inflearn.com/course/프론트엔드-개발환경)" 강의 자료입니다.
 
 - 강의노트: 
   - [프론트엔드 개발 환경의 이해: NPM](http://jeonghwan-kim.github.io/series/2019/12/09/frontend-dev-env-npm.html)

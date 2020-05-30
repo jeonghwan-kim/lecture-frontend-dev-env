@@ -3,7 +3,8 @@
   position: relative
 }
 
-.FormView input[type=text] {
+.FormView input[type=text],
+.FormView input {
   display: block;
   box-sizing: border-box;
   width: 100%;

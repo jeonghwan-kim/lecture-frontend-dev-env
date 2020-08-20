@@ -1,0 +1,15 @@
+{
+  "name": "lecture-frontend-dev-env",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack"
+  },
+  "devDependencies": {
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12"
+  },
+  "repository": "https://github.com/dlog6649/lecture-frontend-dev-env.git",
+  "author": "hbim <dlog6649@gmail.com>",
+  "license": "MIT"
+}

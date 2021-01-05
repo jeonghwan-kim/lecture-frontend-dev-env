@@ -48,6 +48,6 @@
   },
   "homepage": "https://github.com/jeonghwan-kim/lecture-frontend-dev-env#readme",
   "dependencies": {
-    "axios": "^0.19.1"
+    "axios": "^0.21.1"
   }
 }

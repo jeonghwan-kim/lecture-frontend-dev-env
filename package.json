@@ -10,14 +10,18 @@
     "clean-webpack-plugin": "^3.0.0",
     "css-loader": "^3.4.1",
     "eslint": "^6.8.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^3.4.0",
     "file-loader": "^5.0.2",
+    "html-webpack-plugin": "^3.2.0",
+    "husky": "^7.0.1",
+    "mini-css-extract-plugin": "^0.9.0",
     "node-sass": "^4.13.0",
+    "prettier": "^2.3.2",
     "sass-loader": "^8.0.0",
     "style-loader": "^1.1.2",
     "url-loader": "^3.0.0",
     "webpack": "^4.41.5",
-    "html-webpack-plugin": "^3.2.0",
-    "mini-css-extract-plugin": "^0.9.0",
     "webpack-cli": "^3.3.10"
   },
   "scripts": {
@@ -34,5 +38,10 @@
   "bugs": {
     "url": "https://github.com/jeonghwan-kim/lecture-frontend-dev-env/issues"
   },
-  "homepage": "https://github.com/jeonghwan-kim/lecture-frontend-dev-env#readme"
+  "homepage": "https://github.com/jeonghwan-kim/lecture-frontend-dev-env#readme",
+  "husky": {
+    "hooks": {
+      "pre-commit": "echo \"이것은 커밋전에 출력됨\""
+    }
+  }
 }

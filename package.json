@@ -1,0 +1,24 @@
+{
+  "name": "lecture-frontend-dev-env",
+  "version": "1.0.0",
+  "description": "\"프론트엔드 개발 환경의 이해\" 강의 자료입니다.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dazzel3/lecture-frontend-dev-env.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dazzel3/lecture-frontend-dev-env/issues"
+  },
+  "homepage": "https://github.com/dazzel3/lecture-frontend-dev-env#readme",
+  "devDependencies": {
+    "webpack": "^5.57.1",
+    "webpack-cli": "^4.8.0"
+  }
+}
